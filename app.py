@@ -12,10 +12,8 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 # CORS configuration for production
 CORS(app, origins=[
     "http://localhost:5173",  # Local development
-    "https://*.pages.dev",   # Cloudflare Pages
-    "https://*.workers.dev",  # Cloudflare Workers
     "https://lost-and-found-system.opticallol81.workers.dev",  # Production frontend
-], supports_credentials=True)
+], supports_credentials=True, allow_headers=["Content-Type", "Authorization"])
 
 app.register_blueprint(user_bp)
 app.register_blueprint(item_bp)

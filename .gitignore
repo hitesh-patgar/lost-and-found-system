@@ -9,10 +9,11 @@ env/
 ENV/
 
 # Sensitive files - DO NOT COMMIT
-config.py
-database.py
+# config.py - Now safe with environment variables
+# database.py - Now safe with environment variables
 .env
 *.env
+.env.local
 
 # IDE
 .vscode/

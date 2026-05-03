@@ -4,10 +4,17 @@ from routes.user_routes import user_bp
 from routes.item_routes import item_bp
 from routes.match_routes import match_bp
 from routes.claim_routes import claim_bp
+import os
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
-CORS(app)
+
+# CORS configuration for production
+CORS(app, origins=[
+    "http://localhost:5173",  # Local development
+    "https://*.vercel.app",   # Vercel preview deployments
+    os.getenv("FRONTEND_URL", "")  # Production frontend URL
+])
 
 app.register_blueprint(user_bp)
 app.register_blueprint(item_bp)

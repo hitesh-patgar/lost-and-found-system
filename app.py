@@ -12,8 +12,8 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 # CORS configuration for production
 CORS(app, origins=[
     "http://localhost:5173",  # Local development
-    "https://lost-and-found-system-mu.vercel.app",  # Production frontend
-    "https://*.vercel.app",   # Vercel preview deployments
+    "https://*.pages.dev",   # Cloudflare Pages
+    "https://lost-and-found-system.pages.dev",  # Production frontend
 ], supports_credentials=True)
 
 app.register_blueprint(user_bp)

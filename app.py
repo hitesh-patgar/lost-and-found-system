@@ -10,10 +10,7 @@ app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 # CORS configuration for production
-CORS(app, origins=[
-    "http://localhost:5173",  # Local development
-    "https://lost-and-found-system.opticallol81.workers.dev",  # Production frontend
-], supports_credentials=True, allow_headers=["Content-Type", "Authorization"])
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 app.register_blueprint(user_bp)
 app.register_blueprint(item_bp)

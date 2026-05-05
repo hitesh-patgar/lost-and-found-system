@@ -9,8 +9,13 @@ import os
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
-# CORS configuration for production
-CORS(app, resources={r"/*": {"origins": "*"}})
+# CORS configuration for production and development
+CORS(app, resources={r"/*": {
+    "origins": "*",
+    "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    "allow_headers": ["Content-Type", "Authorization"],
+    "supports_credentials": False
+}})
 
 app.register_blueprint(user_bp)
 app.register_blueprint(item_bp)

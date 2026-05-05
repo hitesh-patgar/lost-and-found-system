@@ -62,14 +62,17 @@ def get_profile(current_user_id):
         user = get_user_profile(current_user_id)
         if user:
             items = get_items_by_user(current_user_id)
+            # Separate items by status
+            lost_items = [item for item in items if item.get("status") == "Lost"]
+            found_items = [item for item in items if item.get("status") == "Found"]
+            
             return jsonify({
-                "user": {
-                    "id": user["id"],
-                    "name": user["name"],
-                    "email": user["email"],
-                    "points": user.get("points", 0)
-                },
-                "items": items
+                "name": user["name"],
+                "email": user["email"],
+                "points": user.get("points", 0),
+                "community_points": user.get("points", 0),
+                "lost_items": lost_items,
+                "found_items": found_items
             })
         return jsonify({"message": "User not found"}), 404
     except Exception as e:

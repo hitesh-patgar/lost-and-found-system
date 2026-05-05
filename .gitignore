@@ -31,3 +31,9 @@ Thumbs.db
 # Database
 *.db
 *.sqlite3
+
+# Separate frontend repository
+campus-connect-frontend/
+
+# Test files
+test_*.py
